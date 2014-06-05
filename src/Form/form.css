@@ -1,0 +1,441 @@
+
+
+
+form.form_class{
+  position:relative;
+}
+/* make room for the error labels */
+.form_class.has_errors{
+  
+}
+
+.form_class .json{ display:none; }
+
+.element_holder,
+.password_confirm,
+.html_holder{
+  position:relative;
+  /*clear:both;*/
+  margin-bottom:8px;
+}
+  .password_confirm{}
+  .element_holder label{
+    display:inline-block;
+    margin-right:10px;
+    vertical-align:middle;
+  }
+    .element_holder label[for]{
+      cursor:pointer;
+    }
+    .element_holder label:after{
+      content:':';
+    }
+
+  .element_holder .description{
+    margin:.3125em 0 0 0;
+  }
+  .element_holder p,
+  .html_holder p{
+    margin:0;
+  }
+  .html_holder + .element_holder{
+    padding-top:0;
+  }
+
+/*--- REQUIRED ---*/
+.element_holder.required{}
+  .element_holder.required label:after,
+  #name_holder.required label:after{
+    content:':';
+  }
+
+/* multiple holder required */
+.multiple_holder label.required{
+  font-weight:700;
+}
+  .multiple_holder label.required:after{
+    content:':';
+  }
+
+
+/*-- GENERAL INPUT/SELECT/TEXTAREA ---*/
+
+/* placeholder colors */
+.form_class ::-webkit-input-placeholder { color:#637884; opacity:1; }
+.form_class ::-moz-placeholder { color:#637884; opacity:1; } /* firefox 19+ */
+.form_class :-ms-input-placeholder { color:#637884; opacity:1;} /* ie */
+.form_class input:-moz-placeholder { color:#637884; opacity:1; }
+
+.element_holder input,
+.element_holder select,
+.element_holder textarea,
+ul.as-selections,
+.inline-elements{
+  width:100%;
+  font-size:1em;
+  outline:none; /* removes the browsers default focus additions */
+  padding:5px 8px;
+  box-sizing: border-box; /* css3 rec */
+  -moz-box-sizing: border-box; /* ff2 */
+  -ms-box-sizing: border-box; /* ie8 */
+  -webkit-box-sizing: border-box; /* safari3 */
+  -khtml-box-sizing: border-box; /* konqueror */
+}
+  .element_holder textarea{
+    max-width:100%;
+    min-width:100%;
+  }
+  .element_holder input:focus,
+  .element_holder select:focus,
+  .element_holder textarea:focus,
+  ul.as-selections.focus,
+  .inline-elements.focus{
+    
+  }
+
+
+.element_holder input[disabled]{
+  background:none;
+  border:none;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  -ms-box-shadow:none;
+  box-shadow:none;
+}
+
+/*--- RADIOS/CHECKBOXES ---*/
+.option_holder{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+  .option_holder label,
+  .element_holder.error .option_holder label {
+    font-size:1em;
+    font-weight:400;
+    display:inline-block;
+    vertical-align:middle;
+    margin:0;
+  }
+  .required .option_holder label:after,
+  .option_holder label:after{ content:''; }
+
+  .option_holder input{
+    width:auto;
+    margin:0 2px 0 0;
+    display:inline-block;
+    vertical-align:middle;
+  }
+  .option_holder li{
+    display:inline-block;
+    vertical-align:top;
+    margin-right:15px;
+  }
+
+/*--- BUTTONS ---*/
+.element_holder input.button,
+.element_holder input.submit{
+  width:auto;
+  cursor:pointer;
+}
+  .element_holder input.submit{
+    padding:.3em 1em;
+  }
+  .element_holder input.button:hover,
+  .element_holder input.button:focus,
+  .element_holder input.button:active,
+  .element_holder input.submit:hover,
+  .element_holder input.submit:focus,
+  .element_holder input.submit:active{
+  }
+
+/*--- CAPTCHA ---*/
+#captcha_holder{
+  min-height:135px;
+}
+
+
+/*--- FILE UPLOADS ---*/
+.file_holder .file_trigger{
+  margin-top:.3125em;
+  display:none; /* shown when js is triggered */
+}
+
+.file_holder.multiple input[type="file"]{
+  opacity:0;
+  position:absolute;
+  left:-999999px;
+}
+.file_holder.multiple .drop_notifier input[type="file"]{
+  opacity:.5;
+  top:0; right:0;
+  bottom:0; left:0;
+}
+
+.file_holder .list_holder{
+  margin:.625em 0 0 0;
+  padding:0;
+  border-top:1px solid #ccc;
+}
+.file_holder ul.file_list{
+  position:relative;
+  list-style:none;
+  line-height:1.1em;
+  padding:5px;
+  margin:5px 5px 5px 0;
+  display:inline-block;
+  vertical-align:top;
+}
+  .file_holder.multiple ul.file_list{
+    border:1px solid #aaa;
+  }
+  .file_holder ul.file_list:empty{
+    border:0;
+  }
+  .file_holder ul.file_list:empty:before{
+    content:'add more files';
+    font-size:.85em;
+    font-style:italic;
+  }
+  .file_holder .file_list li{
+    display:inline-block;
+    text-align:center;
+    vertical-align:top;
+    margin-right:5px;
+    max-width:100px;
+    padding:5px 10px;
+    border:1px solid #e3e3e3;
+  }
+  .file_holder .file_list .upload_pic{
+    max-width:100%;
+    max-height:5em;
+    display:block;
+  }
+  .file_holder .file_list span.name{     
+    color:#333;
+    font-size:.85em;
+  }
+  .file_holder .file_list span.size{
+    font-size:.75em;
+    display:block;
+  }
+
+  .file_holder .file_list .remove{
+    position:absolute;
+    top:-1px; right:-1px;
+    border:0;
+    padding:0;
+    margin:0;
+    line-height:0;
+  }
+    .file_holder .file_list .remove a{
+      display:block;
+      text-decoration:none;
+      color:#fff;
+      font-family:sans-serif;
+      font-size:14px;
+      width:18px;
+      line-height:18px;
+      background:#600;
+    }
+    .file_holder .file_list .remove a:hover{
+      background:#900;
+    }
+
+/*--- ADDRESS ---*/
+.address_holder{}
+  
+  .name_holder label,
+  .address_holder label.inline{
+    font-size:1em;
+    margin-top:.5em;
+    margin-left:.625em;
+  }
+
+  .address_holder .type,
+  .address_holder .street{
+    margin-bottom:.25em;
+  }
+
+  .address_holder .city{
+    width:60%;
+  }
+  .address_holder .state{
+    width:6%;
+    margin-left:4px;
+  }
+  .address_holder .zipcode{
+    width:18%;
+    margin-left:4px;
+  }
+
+/*--- NAMES ---*/
+.name_holder{}
+  .name_holder label{
+    display:inline-block;
+    width:47%;
+    margin-top:0;
+  }
+  .name_holder input{
+    display:inline-block;
+    width:50%;
+  }
+  .name_holder input:first-child{
+    width:48%;
+    margin-right:2%;
+  }
+
+
+/*--- SELECTS ---*/
+.element_holder select{
+  padding:4px 4px 3px 4px;
+}
+.element_holder select option{
+  padding:2px;
+  color:#45535c;
+}
+  .element_holder select option[data-placeholder],
+  .element_holder select.placeholder_selected{
+    color:#637884;
+  }
+
+
+/*--- DATE SELECT ---*/
+.dateselect_holder,
+.dateselect_holder select,
+.dateselect_holder + .description{
+  display:inline-block;
+  width:auto;
+  vertical-align:middle;
+}
+  .dateselect_holder + .description a{
+    margin-left:5px;
+    cursor:help;
+    text-decoration:none;
+    letter-spacing:-.02em;
+  }
+
+
+/*--- ERRORS ---*/
+.form_errors{}
+
+.element_holder.error input,
+.element_holder.error select,
+.element_holder.error textarea,
+.multiple_holder.error input,
+.multiple_holder.error select,
+.multiple_holder.error textarea{
+  
+}
+.element_holder.error label,
+.multiple_holder.error label{
+  color:#900;
+}
+
+  .element_holder.error .errors,
+  .multiple_holder.error .errors{
+    position:absolute;
+    top:5px; right:-180px;
+    width:150px;
+    line-height:1.1em;
+    color:#333;
+    font-weight:400;
+    font-size:1em;
+  }
+  .element_holder.error .errors:before,
+  .multiple_holder.error .errors:before{
+    content:'*';
+    position:absolute;
+    left:-.6em;
+    color:#900;
+    font-weight:bold;
+    font-size:1.5em;
+  }
+  .element_holder.error .errors:after,
+  .multiple_holder.error .errors:after{
+    content:'' !important;
+  }
+
+
+/*
+ *  Inline Elements
+ *  used with link listing and others to show multiple items as one input
+*/
+.inline-elements{
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  background:#fff;
+  padding:0 6px !important;
+  cursor:text;
+}
+
+.inline-elements select,
+.inline-elements input{
+  width:auto;
+  border:none;
+  background:none;
+  box-shadow:none !important;
+}
+  .inline-elements select{
+    border-right:1px solid #e3e3e3 !important;
+    padding-right:5px;
+    margin-right:5px;
+  }
+    .inline-elements select option{
+      margin-right:5px;
+    }
+  .inline-elements input{
+    padding-left:0;
+    -webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 2;         /* OLD - Firefox 19- */
+    width: 30%;               /* For old syntax, otherwise collapses. */
+    -webkit-flex: 2;          /* Chrome */
+    -ms-flex: 2;              /* IE 10 */
+    flex: 2;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  }
+
+  .inline-elements span{
+    letter-spacing:-.02em;
+    font-size:.9em;
+    opacity:.6;
+  }
+
+/*
+ *  Notes
+*/
+.element_holder label + .note,
+.form_class h3 + .note{
+  float:left;
+  clear:left;
+  margin:2px 0 10px 0;
+  width:140px;  
+  font-size:1em;
+  line-height:1.2em;
+  color:#666;
+}
+
+/*
+ *  Fieldsets
+*/
+fieldset{
+  border-left:6px solid #afafaf;
+  padding-left:10px;
+}
+  fieldset legend{
+    margin:0;
+    padding-top:1.2em;
+  }
+  fieldset + section{
+    margin-top:1.2em;
+  }
+
+
+/*
+ *  Toggle Elements
+*/
+[data-toggle_el]{
+  display:none;
+}

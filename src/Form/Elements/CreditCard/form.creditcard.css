@@ -1,0 +1,102 @@
+/*--- PAYMENT TYPE ---*/
+.payment_type ul label{
+  margin-left:0px;
+}
+  .payment_type ul label span{
+    display:inline-block;
+    vertical-align:middle;
+    height:32px;
+    width:51px;
+    margin:0 5px 5px 0;
+    background:#f00;
+  }
+    .payment_type ul label span.cc_icon{
+      width:220px;
+      background:url(credit_card_hover.png);
+    }
+    .payment_type ul label span.pp_icon{
+      background:url(paypal-curved-32px.png);
+    }
+
+/*--- CREDIT CARD TYPE RADIOS ---*/
+ul.cc_type li{
+  display:inline-block;
+  overflow:hidden;
+}
+
+input.cc_type{
+  position:absolute;
+  left:-999px;
+}
+
+label.cc_type{
+  display:block !important;
+  width:51px; height:32px;
+  overflow:hidden;
+  text-indent:-999999px;
+  background:url(credit_card_hover.png);
+  margin-left:5px;
+  margin-top:5px;
+}
+  label.cc_type.mastercard{ background-position:0 -32px; }
+    label.cc_type.mastercard:hover,
+    label.cc_type.mastercard.checked{ background-position:0 0; }
+  label.cc_type.visa{ background-position:-56px -32px; }
+    label.cc_type.visa:hover,
+    label.cc_type.visa.checked{ background-position:-56px 0; }
+  label.cc_type.amex{ background-position:-112px -32px; }
+    label.cc_type.amex:hover,
+    label.cc_type.amex.checked{ background-position:-112px 0; }
+  label.cc_type.discover{ background-position:-169px -32px; }
+    label.cc_type.discover:hover,
+    label.cc_type.discover.checked{ background-position:-169px 0; }
+
+
+/*--- EXPIRATION MONTH & YEAR ---*/
+select.cc_exp_month,
+select.cc_exp_year{
+  width:250px;
+}
+
+/*--- CVV2 ---*/
+input.cc_cvv2{
+  width:90px;
+  float:left;
+  margin-right:10px;
+}
+
+.cvv2_holder .description abbr{
+  position:relative;
+  font-size:.8em;
+  color:#0072bc;
+  cursor:help;
+}
+
+  .cvv2_tooltip{
+    display:none;
+    position:absolute;
+    right:-280px;
+    top:-5px;
+    z-index:999;
+    font-size:1.1em;
+    line-height:1.6em;
+    width:250px;
+    padding:10px;
+    background:#fff;
+    color:#333;
+    border:1px solid #e3e3e3;
+    -moz-box-shadow:0px 1px 2px #666;
+    -webkit-box-shadow:0px 1px 2px #666;
+    box-shadow:0px 1px 2px #666;
+  }
+
+  .cvv2_holder .description abbr:hover .cvv2_tooltip{
+    display:block;
+  }
+
+
+
+
+
+
+

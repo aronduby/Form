@@ -1,0 +1,16 @@
+{
+    "name": "aronduby/form",
+    "type": "library",
+    "description": "Form system for PHP",
+    "keywords": ["forms"],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/",
+            "Form\\": "src/Form/"
+        }
+    }
+}
+

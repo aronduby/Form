@@ -1,0 +1,10 @@
+input.phone{
+  width:40px;
+  text-align:center;
+  padding-right:0;
+}
+
+input.phone.extension{
+  width:auto;
+  text-align:left;
+}

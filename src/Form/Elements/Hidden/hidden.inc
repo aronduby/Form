@@ -1,0 +1,1 @@
+<input type="hidden" id="<?php echo $this->id ?>" name="<?php echo $this->name ?>" value="<?php echo $this->value ?>" <?php echo $this->outputDataProperties() ?>/>
