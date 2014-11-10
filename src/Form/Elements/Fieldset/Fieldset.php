@@ -9,7 +9,7 @@ class Fieldset extends Input{
 	public $elements = [];
 
 	public $additional_js = [];
-	public $additional_css = [];
+	public $additional_css = ['form.fieldset.css'];
 	
 	protected $form;
 	protected $template = 'fieldset.inc';

@@ -38,11 +38,11 @@ class Email extends Text{
 
 
 	/**
-	copied from: http://www.linuxjournal.com/article/9585?page=0,3
-	Validate an email address.
-	Provide email address (raw input)
-	Returns true if the email address has the email 
-	address format and the domain exists.
+	 *	copied from: http://www.linuxjournal.com/article/9585?page=0,3
+	 *	Validate an email address.
+	 *	Provide email address (raw input)
+	 *	Returns true if the email address has the email 
+	 *	address format and the domain exists.
 	*/
 	protected function validEmail($email){
 	   $isValid = true;

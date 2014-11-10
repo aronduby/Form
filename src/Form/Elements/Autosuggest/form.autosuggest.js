@@ -8,7 +8,7 @@
 				input = $this.find('input.as-input');
 
 			input.autoSuggest(available_options, {
-				startText: 'Begin typing...',
+				startText: 'begin typing...',
 				preFill: selected_options,
 				selectedItemProp: 'label',
 				selectedValuesProp: 'value',
@@ -18,8 +18,7 @@
 			});
 		});
 
-		$('.autosuggest_holder .description a.prefill').click(function(){
-			
+		$('.autosuggest_holder .description a.prefill').click(function(){			
 			var d = {
 				'label': $(this).text(),
 				'value': $(this).data('id')

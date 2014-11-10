@@ -3,9 +3,9 @@ ul.as-selections {
   list-style-type: none;
   overflow: auto;
   line-height:1.2em;
-  padding:2px 5px;
+  padding: 0;
   cursor:text;
-  margin:0;
+  margin: -3px 0 0 -5px;
 }
   ul.as-selections.loading {
     background-color: #eee;
@@ -14,7 +14,9 @@ ul.as-selections {
   ul.as-selections li {
     float: left;
     margin: 1px 4px 1px 0;
-  }
+  
+    padding: 2px 0 0 7px;
+}
 
   /* focused styles */
   ul.as-selections li.as-selection-item {

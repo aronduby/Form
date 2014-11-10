@@ -11,13 +11,16 @@ class Captcha extends Input{
 	
 	public $class_type = 'captcha';
 	public $required = true;
-	public $js_options = array(); // see https://developers.google.com/recaptcha/ for the options
+	public $js_options = array('theme'=>"clean"); // see https://developers.google.com/recaptcha/ for the options
 	public $name = 'captcha';
+
+	public $public_key;
+	public $private_key;
 
 
 	public function process(){
 		$rsp = recaptcha_check_answer (
-			RECAPTCHA_GLOBAL_PRIVATE_KEY, 
+			$this->private_key, 
 			$_SERVER["REMOTE_ADDR"], 
 			$_REQUEST["recaptcha_challenge_field"], 
 			$_REQUEST["recaptcha_response_field"]

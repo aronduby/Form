@@ -1,31 +1,48 @@
-<section id="<?php echo $this->name ?>_holder" class="element_holder <?php echo $this->required ? 'required' : '' ?> <?php echo $this->error ? 'error' : '' ?>" <?php echo $this->outputDataProperties() ?>>
+<section 
+	id="<?php echo $this->name ?>_holder" 
+	class="form-group <?php echo $this->required ? 'required' : '' ?> <?php echo $this->error ? 'has-error' : '' ?>"
+	<?php echo $this->outputDataProperties() ?>
+>
 	
 	<?php
 	if(isset($this->label))
-		print '<label>'.$this->label.'</label>';
+		print '<label class="control-label">'.$this->label.'</label>';
 	?>
 
-	<ul class="option_holder">
+	<?php
+	if($this->error === true)
+		print '<div class="errors bs-callout bs-callout-danger">'.$this->error_msg.'</div>';
+	?>
+
+	<div>
 		<?php
-		$i = 1;
 		foreach($this->options as $val=>$text){
-			print '<li>
-				<input type="checkbox" id="'.$this->name.'_'.$i.'" name="'.$this->name.'[]" value="'.$val.'" '.(in_array($val, (array)$this->value) ? 'checked="checked"' : '' ).' />
-				<label for="'.$this->name.'_'.$i.'">'.$text.'</label>
-			</li>';
-			$i++;
+			if($this->inline == false){
+				print '<div class="checkbox">';
+			}
+			?>
+				<label class="<?= $this->inline ? 'checkbox-inline' : '' ?>">
+					<input 
+						type="checkbox"
+						name="<?= $this->name ?>[]" 
+						value="<?= $val ?>" 
+						<?= (in_array($val, (array)$this->value) ? 'checked' : '' ) ?> 
+					/>
+					<?= $text ?>
+				</label>
+			<?php
+			if($this->inline == false){
+				print '</div>';
+			}
 		}
 		?>
-	</ul>
+	</div>
 
 	<?php
 	if(isset($this->description)) {
-		print '<div class="description">';
+		print '<div class="help-block">';
 			print $this->description;
 		print '</div>';
 	}
-
-	if($this->error === true)
-		print '<label class="errors">'.$this->error_msg.'</label>';
 	?>
 </section>

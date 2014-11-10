@@ -21,6 +21,7 @@
 
  /*
   *	Added additional focus class to .as-selections to match when the input is in focus
+  * and now also looks for a parent .form-control and add it there as well
   *	Added custom event addASItem to the input to be able to dynamically add items
  */
 
@@ -77,7 +78,7 @@
 				}
 				opts.start.call(this);
 				var input = $(this);
-				input.attr("autocomplete","off").addClass("as-input").attr("id",x_id).val(opts.startText);
+				input.attr("autocomplete","off").addClass("as-input").attr("id",x_id).attr('placeholder', opts.startText);
 				var input_focus = false;
 				
 				// Setup basic elements and render them to the DOM
@@ -133,7 +134,7 @@
 				
 				// Handle input field events
 				input.focus(function(){			
-					if($(this).val() == opts.startText && values_input.val() == ""){
+					if(values_input.val() == ""){
 						$(this).val("");
 					} else if(input_focus){
 						$("li.as-selection-item", selections_holder).removeClass("blur");
@@ -143,16 +144,20 @@
 						}
 					}
 					input_focus = true;
-					$(this).parents('.as-selections').addClass('focus');
+					$(this)
+						.parents('.as-selections').addClass('focus').end()
+						.parents('.form-control').addClass('focus');
 					return true;
 				}).blur(function(){
 					if($(this).val() == "" && values_input.val() == "" && prefill_value == ""){
-						$(this).val(opts.startText);
+						// $(this).val(opts.startText);
 					} else if(input_focus){
 						$("li.as-selection-item", selections_holder).addClass("blur").removeClass("selected");
 						results_holder.hide();
 					}
-					$(this).parents('.as-selections').removeClass('focus');
+					$(this)
+						.parents('.as-selections').removeClass('focus').end()
+						.parents('.form-control').removeClass('focus');
 				}).keydown(function(e) {
 					// track last key pressed
 					lastKeyPressCode = e.keyCode;

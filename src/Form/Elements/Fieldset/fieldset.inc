@@ -1,4 +1,8 @@
-<fieldset id="<?php echo $this->id ?>" <?php echo $this->outputDataProperties() ?> <?php echo $this->outputDataProperties() ?>>
+<fieldset 
+	id="<?php echo $this->id ?>" 
+	class="form-group"
+	<?php echo $this->outputDataProperties() ?>
+>
 	<?php
 	if(isset($this->legend))
 		print '<legend>'.$this->legend.'</legend>';

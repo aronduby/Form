@@ -1,0 +1,6 @@
+fieldset{
+  padding-left:15px;
+}
+  fieldset legend{
+    margin-left:-15px;
+  }

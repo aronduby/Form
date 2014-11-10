@@ -8,7 +8,6 @@
     },
     "autoload": {
         "psr-4": {
-            "": "src/",
             "Form\\": "src/Form/"
         }
     }

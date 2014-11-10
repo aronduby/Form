@@ -7,6 +7,7 @@ class Checkbox extends Select{
 	protected $template = 'checkbox.inc';
 
 	public $class_type= 'checkbox';
+	public $inline = false;
 	
 	public function process(){
 		// if a value is supplied, take it

@@ -27,7 +27,7 @@ class Form{
 	
 	public $dom_id = 'form';
 	public $action = false;
-	public $class = 'form_class';
+	public $class = '';
 	public $method = 'post';
 	public $allow_js_to_override_definition = false; // set to false for forms where you won't be changing the structure client side
 	public $autocomplete = true;
@@ -114,15 +114,18 @@ class Form{
 
 	public function addCSS($base, array $add_css){
 		foreach($add_css as $css){
-			if(file_exists($base.$css) && !in_array($base.$css, $this->additional_css))
+			// if(file_exists($base.$css) && !in_array($base.$css, $this->additional_css))
+			if(!in_array($base.$css, $this->additional_css))
 				$this->additional_css[] = $base.$css;
 		}
 	}
 
 	public function addJS($base, array $add_js){
-		foreach((array)$add_js as $js){
-			if(file_exists($base.$js) && !in_array($base.$js, $this->additional_js))
+		foreach($add_js as $js){
+			// if(file_exists($base.$js) && !in_array($base.$js, $this->additional_js)){
+			if(!in_array($base.$js, $this->additional_js)){
 				$this->additional_js[] = $base.$js;
+			}
 		}
 	}
 

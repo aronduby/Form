@@ -21,8 +21,6 @@ class DateSelect extends Input {
 		'year' => "Year"
 	];
 
-	public $additional_js = ['form.select.js'];
-
 	protected $template = 'dateselect.inc';
 
 	public function __construct($opts, $form=null){

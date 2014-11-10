@@ -8,7 +8,7 @@ class Address extends Input{
 	public $counter = 0;
 	public $required_fields = array('street', 'city', 'state', 'zip');
 	public $placeholders = array(
-		'street' => 'street address',
+		'street' => 'street number',
 		'city' => 'city',
 		'state' => 'state',
 		'zip' => 'zipcode',

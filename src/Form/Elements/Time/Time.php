@@ -2,11 +2,11 @@
 
 namespace Form\Elements;
 
-class Date extends Text{
+class Time extends Text{
 	
-	public $class_type = 'date';
-	public $type = 'date';
-	public $format = 'm/d/y'; // php date format for displaying, actual value is saved as a timestamp
+	public $class_type = 'time';
+	public $type = 'time';
+	public $format = 'g:i'; // php date format for displaying, actual value is saved as a timestamp
 
 	public function output($format = 'html'){
 
@@ -26,7 +26,7 @@ class Date extends Text{
 				return true;
 			} catch(\Exception $e){
 				$this->error = true;
-				$this->error_msg = 'Sorry, but we were unable to parse your entry as a date. Please check your entry and try again';
+				$this->error_msg = 'Sorry, but we were unable to parse your entry as a time. Please check your entry and try again';
 				error_log($e->getMessage());
 				return false;
 			}

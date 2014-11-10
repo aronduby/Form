@@ -1,0 +1,10 @@
+#Style Tweaks Needed
+
+When the element is focused we add a `.focus` class to the wrapping `.form-control` element. For proper bootstrap styling you have to extend the following classes to also include `.form-control.focus` class.
+
+ - `.form-control:focus`
+ - `.has-success .form-control:focus`
+ - `.has-warning .form-control:focus` 
+ - `.has-error .form-control:focus`
+
+You can do this using your favorite pre-process and extending the class (recommended), or editing the actual bootstrap files

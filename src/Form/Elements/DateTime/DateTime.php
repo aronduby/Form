@@ -2,16 +2,24 @@
 
 namespace Form\Elements;
 
-class Date extends Text{
+class DateTime extends Text{
 	
-	public $class_type = 'date';
-	public $type = 'date';
-	public $format = 'm/d/y'; // php date format for displaying, actual value is saved as a timestamp
+	public $class_type = 'datetime';
+	public $type = 'datetime';
+	// php date format for displaying, actual value is saved as a timestamp
+	public $date_format = 'm/d/y';
+	public $time_format = 'g:i a';
+	public $placeholders = [
+		'date' => 'date',
+		'time' => 'time'
+	];
+
+	protected $template = 'datetime.inc';
 
 	public function output($format = 'html'){
 
 		if(isset($this->value))
-			$this->value = $this->value->format($this->format);
+			$this->value = $this->value->format($this->date_format.' '.$this->time_format);
 
 		return parent::output($format);
 	}
