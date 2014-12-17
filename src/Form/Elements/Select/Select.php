@@ -7,7 +7,6 @@ class Select extends Input{
 	public $class_type = 'select';
 	protected $template = 'select.inc';
 	
-	public $additional_js = ['form.select.js'];
 	public $options = array();
 	
 	// add options, val, text

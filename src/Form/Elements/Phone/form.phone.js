@@ -2,9 +2,6 @@
 	
 	$(document).ready(function(){
 		$('.phone_holder')
-		.on('change', 'select', function(){
-			$(this).nextAll('input:eq(0)').focus();
-		})
 		.on('click', 'input', function(){
 			return false;	
 		})

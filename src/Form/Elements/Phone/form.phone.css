@@ -1,10 +1,12 @@
 input.phone{
-  width:40px;
+  width:52px !important;
   text-align:center;
-  padding-right:0;
 }
 
+input.phone.linenumber{
+  width:64px !important;
+}
 input.phone.extension{
-  width:auto;
+  width:64px !important;
   text-align:left;
 }

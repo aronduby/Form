@@ -7,7 +7,8 @@ class CreditCard extends Input{
 	public $class_type = 'creditcard';
 	public $additional_js = 'form.creditcard.js';
 	public $additional_css = 'form.creditcard.css';
-	public $required_flds = array('name', 'card_number', 'card_type', 'cvv2', 'exp_month', 'exp_year');
+	public $required_flds = array('first_name', 'last_name', 'card_number', 'card_type', 'cvv2', 'exp_month', 'exp_year');
+	public $description = array('cvv2'=>"<abbr title=\"For MasterCard &amp; Visa, it's the last three digits in the signature area on the back of your card.  For American Express, it's the four digits on the front of the card.\">whats this?</abbr>");
 
 	protected $card_types = array(
 		'mastercard'=>"MasterCard", 
@@ -51,12 +52,17 @@ class CreditCard extends Input{
 
 			// check the values for the required fields
 			// first just make sure that they are supplied
-			if($this->required && is_array($this->required_flds)){ 
-				foreach($this->required_flds as $fld){
-					if(!isset($this->value[$fld]) || strlen($this->value[$fld])<=0){
-						$this->error_flds[$fld] = 'You must supply a value for '.ucwords(str_replace('_','',$fld));
-					}
-				}
+			if($this->required && is_array($this->required_flds)){ foreach($this->required_flds as $fld){
+				if(!isset($this->value[$fld]) || strlen($this->value[$fld])<=0)
+					$this->error_flds[$fld] = 'You must supply a value for '.ucwords(str_replace('_','',$fld));
+			}}
+
+			if(isset($this->error_flds['first_name']) || isset($this->error_flds['last_name'])){
+				$this->error_flds['name'] = array();
+				if(isset($this->error_flds['first_name']))
+					$this->error_flds['name'][] = '<label for="'.$this->name.'_first_name">'.$this->error_flds['first_name'].'</label>';
+				if(isset($this->error_flds['last_name']))
+					$this->error_flds['name'][] = '<label for="'.$this->name.'_last_name">'.$this->error_flds['last_name'].'</label>';
 			}
 
 			// run the luhn/mod10 check for valid number
@@ -65,20 +71,21 @@ class CreditCard extends Input{
 					if($this->luhn($this->value['card_number'])){
 
 						//check the card type and see if it validates as that type of card
-						if(in_array($this->value['card_type'], array_keys($this->card_types))){							
+						if(in_array($this->value['card_type'], array_keys($this->card_types))){
+							
 							if(!$this->validateCardType($this->value['card_number'], $this->value['card_type'])){
-								$this->error_flds['card_number'] = 'This card number is not a valid card type. Please check the number and try again.';
+								$this->error_flds['card_number'] = 'This card number does not validate as the choosen card type. Please check both fields and try again.';
 							}
 
 						} else {
-							$this->error_flds['card_type'] = 'Card type not accepted. Please try a different card.';
+							$this->error_flds['card_type'] = 'You must choose an accepted card type.';
 						}			
 					
 					} else {
 						$this->error_flds['card_number'] = 'That number doesn\'t appear to be valid. Please check your entry and try again.';
 					}
 				} catch(\Exception $e){
-					$this->error_flds['card_number'] = 'We were unable to validate the card. Please check your entry and try again.';
+					$this->error_flds['card_number'] = 'We were unable to validate the card type or number. Please check your entry and try again.';
 				}
 			}
 
@@ -101,7 +108,7 @@ class CreditCard extends Input{
 			// check for required
 			if($this->required){
 				$this->error = true;
-				$this->error_flds[] = 'This is a required field';
+				$this->error_msg = 'This is a required field';
 				return false;
 			
 			// not required, doesn't matter

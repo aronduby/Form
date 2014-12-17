@@ -12,6 +12,7 @@ class FileUpload extends Input{
 	public $accept;
 
 	public $additional_js = array('form.fileupload.js');
+	public $additional_css = ['form.fileupload.css'];
 
 	protected $template = 'fileupload.inc';
 	protected $max_file_size;

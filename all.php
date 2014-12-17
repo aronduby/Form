@@ -11,8 +11,8 @@ $form
 		'label'=>"Captcha", 
 		'description'=>"Captcha", 
 		'required'=>true, 
-		'public_key' => "6LcRcP0SAAAAAA12mJ0XdpsJ70abyhfmMsLRhgQh",
-		'private_key' => "6LcRcP0SAAAAAPIlO_V2dfljXNYswUyHNPlZVn8Q"
+		'public_key' => "6LdmjP0SAAAAAEHQ_dYoS-aJeFQfyrr_wbyyBFO3",
+		'private_key' => "6LdmjP0SAAAAAAe3UE-QPa58gP5Ic38TtAGEjpEr"
 	])
 	->add('Checkbox', ['label'=>"Checkbox", 'description'=>"Checkbox", 'required'=>true, 'options'=>[1,2,3,4,5]])
 	->add('Checkbox', ['label'=>"Checkbox", 'description'=>"Checkbox", 'required'=>true, 'options'=>[1,2,3,4,5], 'inline'=>true])
@@ -26,20 +26,20 @@ $form
 	->add('Fieldset', ['legend'=>"Fieldset"])
 		->add('Text', ['label'=>"Text In Fieldset", 'required'=>true])
 	->end()
-	->add('FileUpload', ['label'=>"FileUpload", 'description'=>"FileUpload", 'required'=>true, 'upload_path'=>"/tmp"])
+	->add('FileUpload', ['label'=>"FileUpload", 'description'=>"FileUpload", 'required'=>true, 'upload_path'=>"/tmp", 'multiple'=>true])
 	->add('Hidden', ['label'=>"Hidden", 'description'=>"Hidden", 'required'=>true])
 	->add('ImageUpload', ['label'=>"ImageUpload", 'description'=>"ImageUpload", 'required'=>true, 'upload_path'=>"/tmp"])
 	->add('Name', ['label'=>"Name", 'description'=>"Name", 'required'=>true])
 	->add('Number', ['label'=>"Number", 'description'=>"Number", 'required'=>true])
-	->add('Password', ['label'=>"Password", 'description'=>"Password", 'required'=>true])
+	->add('Password', ['label'=>"Password", 'description'=>"Password", 'required'=>true, 'confirm'=>true])
 	->add('Phone', ['label'=>"Phone", 'description'=>"Phone", 'required'=>true])
-	->add('Radio', ['label'=>"Radio", 'description'=>"Radio", 'required'=>true, 'options'=>['a','b','c','d']])
+	->add('Radio', ['name'=>"radio", 'label'=>"Radio", 'description'=>"Radio", 'required'=>true, 'options'=>['a','b','c','d']])
+	->add('Radio', ['name'=>"radio-inline", 'label'=>"Radio", 'description'=>"Radio", 'required'=>true, 'options'=>['a','b','c','d'], 'inline'=>true])
 	->add('Select', ['label'=>"Select", 'description'=>"Select", 'required'=>true, 'options'=>['a','b','c','d']])
 	->add('StateSelect', ['label'=>"StateSelect", 'description'=>"StateSelect", 'required'=>true])
-	->add('Submit', ['label'=>"Submit", 'description'=>"Submit", 'required'=>true])
 	->add('Text', ['label'=>"Text", 'description'=>"Text", 'required'=>true])
 	->add('Textarea', ['label'=>"Textarea", 'description'=>"Textarea", 'required'=>true])
-	->add('Typeahead', ['label'=>"Typeahead", 'description'=>"Typeahead", 'required'=>true]);
+	->add('Submit', ['label'=>"Submit", 'description'=>"Submit", 'required'=>true]);
 ?>
 <!doctype HTML>
 <html>

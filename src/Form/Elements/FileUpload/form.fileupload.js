@@ -2,38 +2,38 @@
 
 	$(document).ready(function(){
 		
-		$('.form_class .file_holder').each(function(){
-			var eq = 1,
+		$('.file-holder').each(function(){
+			var eq = 0,
 				t = $(this),
+				input_holder = t.find('.input-holder'),
 				multiple = $(this).hasClass('multiple');
 
 			if(multiple){
 				var org = $(this).find('input[type="file"]').clone();
 			}
 
-			$('.file_trigger, .file_list', t).show();
-			$('input:file', t).css({
-				'opacity':0,
+			$('.file-trigger, .list-holder', t).show();
+			input_holder.css({
+				'opacity': 0,
 				'position': 'absolute',
 				'left':'-999999px'
 			});
 
 			// dialog trigger
-			t.on('click', '.file_trigger', function(){
+			t.on('click', '.file-trigger', function(){
 				var file_el;
 
 				if(multiple){
-					var file_inputs = t.find('input[type="file"]');
+					var file_inputs = input_holder.find('input[type="file"]');
 					if(!file_inputs.length){
-						file_inputs = org.clone().appendTo(t);
+						file_inputs = org.clone().appendTo(input_holder);
 					}
 
 					file_el = file_inputs.last();
 					if(file_el[0].files.length > 0){
 						// create a new file input and file list
-						file_el = org.clone().attr('data-eq', eq).val('').appendTo(t);
-						t.find('.list_holder').append('<ul class="file_list" data-eq="'+eq+'"></ul>');
 						eq++;
+						file_el = org.clone().attr('data-eq', eq).val('').appendTo(input_holder);						
 					}
 				} else {
 					file_el = t.find('input[type="file"]');
@@ -44,17 +44,13 @@
 			});
 
 			// removing for multiples
-			t.on('click', '.remove a', function(e){
-				var ul = $(this).parents('ul'),
-					eq = ul.attr('data-eq'),
-					file = t.find('input[type="file"][data-eq="'+eq+'"]');
+			t.on('click', '.close', function(e){
+				var li = $(this).parents('li'),
+					eq = li.attr('data-eq'),
+					file = input_holder.find('input[type="file"][data-eq="'+eq+'"]');
 
-				ul.remove();
+				li.remove();
 				file.remove();
-
-				if($('.list_holder', t).is(':empty')){
-					$('.list_holder', t).append('<ul class="file_list" data-eq="0"></ul>');
-				}
 				
 				e.stopPropagation();
 				e.preventDefault();
@@ -65,15 +61,15 @@
 			if(typeof FileList != 'undefined'){
 				t.on('change', 'input[type="file"]', function(e){
 					files = $(this)[0].files;
-					$list = t.find('.file_list[data-eq="'+$(this).attr('data-eq')+'"]');
+					$list = t.find('.file-list');
 
-					processFiles(files, $list);
+					processFiles(files, $list, $(this).data('eq'));
 				});
 
 			} else {
 				$('input:file', t).change(function(e){
-					var $list = t.find('.file_list[data-eq="'+$(this).attr('data-eq')+'"]');
-					$list.html('<li>'+( $(this).val().replace("C:\\fakepath\\", '') )+'</li>');
+					var $list = t.find('.file-list');
+					$list.html('<li class="list-group-item">'+( $(this).val().replace("C:\\fakepath\\", '') )+'</li>');
 				});
 			}
 
@@ -81,13 +77,13 @@
 
 	}); // end domready
 
-	function processFiles(files, $list){
+	function processFiles(files, $list, eq){
 		var image_filter = /image.*/;
-		$list.empty();
 
 		for(var i=0; i<files.length; i++){
 			(function (i){ // Loop through our files with a closure so each of our FileReader's are isolated.
-				var file = files[i];
+				var file = files[i],
+					li = $('<li></li>').attr('data-eq', eq).addClass('list-group-item');
 
 				// safari catch, name = fileName, size = fileSize, no type
 				if(typeof file.fileName != 'undefined'){
@@ -105,19 +101,28 @@
 							src: event.target.result,
 							title: (files.name),
 							alt: (files.name)
-						})
-						$list.append($('<li></li>').append(newImg).append('<span class="name">'+file.name+'</span> <span class="size">'+Math.round(file.size/1024)+'kb</span>'));
+						});
+
+						li
+							.append(newImg)
+							.append('<span class="name">'+file.name+'</span>')
+							.append('<span class="size">'+Math.round(file.size/1024)+'kb</span>');
+						
+						$list.append(li);
 					};
 					reader.readAsDataURL(file);
 
 				} else {
-					$list.append('<li><span class="name">'+file.name+'</span ><span class="size">'+Math.round(file.size/1024)+'kb</span></li>');
+					li
+						.append('<span class="name">'+file.name+'</span>')
+						.append('<span class="size">'+Math.round(file.size/1024)+'kb</span></li>');
+					$list.append(li);
+				}
+
+				if($list.parents('.file-holder').hasClass('multiple')){
+					li.append('<button type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>');
 				}
 			})(i);						
-		}
-
-		if($list.parents('.file_holder').hasClass('multiple')){
-			$list.append('<li class="remove"><a href="#">&times;</a></li>');
 		}
 	}
 
